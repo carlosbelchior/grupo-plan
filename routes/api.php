@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,14 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::prefix('marcas')->controller(MarcaController::class)->group(function () {
+    Route::get('/todos', 'todos');
+});
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('produtos')->controller(ProdutoController::class)->group(function () {
+    Route::get('/todos', 'todos');
+    Route::get('/encontrar/{id}', 'encontrar');
+    Route::post('/cadastro', 'cadastro');
+    Route::post('/atualizar/{id}', 'atualizar');
+    Route::get('/exclusao/{id}', 'exclusao');
 });
