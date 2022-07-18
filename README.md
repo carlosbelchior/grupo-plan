@@ -1,51 +1,94 @@
-# Docker
-Basic settings for development with docker
+# API GRUPO PLAN - BELCHIOR
+Software Grupo Plan - Por Carlos Belchior.
 
-## Technologies
-The following technologies are being used to make this project work.
+## Tecnologias
+As tecnologias abaixo descritas foram utilizadas para desenvolver esse projeto.
 
-- *PHP* - version 8.1
-- *MySQL (or MariaDB)* - Allways latest version
-- *NGINX* - Allways latest version stable
+- *Laravel 9.x*
+- *Vue.js 3.x*  
+- *Vuex 4.x*  
+- *MySQL*
 
-## Setup
+## Configuração do projeto
+Este é basicamente um projeto laravel. Para executar se faz necessário seguir os requisitos do framework. É EXTREMAMENTE recomendado que use docker para executar esta aplicação. Você pode instalr o Docker seguindo as instruções do link a seguir para [obter o docker](https://docs.docker.com/engine/install/).
 
-You can install Docker following the instructions on the link [get Docker](https://docs.docker.com/engine/install/).
+As próximas sessões irão fornecer instruções de como configurar e executar a aplicação em um container Docker.
 
-Clone this repository for into your project with command below
-
-```bash
-https://github.com/carlosbelchior/docker.git
-```
-
-### Run it locally
-The sections below describe how to set up the development environment.
-
-#### Start up
-To startup the application you can run the command shown below.
+### Iniciando
+Para configurar seu container docker execute o comando abaixo:
 
 ```bash
 docker-compose up --build -d
 ```
 
-Docker command to access the php service:
-
+Após criado o container docker acesse o serviço do PHP com o comando abaixo:
 ```bash
 docker-compose exec php /bin/bash
 ```
 
-It will start the application using some docker containers (nginx, mysql and PHP).
+O container docker será executado com imagens nginx, mysql e PHP.
 
-#### Settings files
+#### Arquivos de configuração
+Faça uma cópia do arquivo `.env.example`para `.env` e informe as variaveis de configuração conforme informado na documentação do Laravel no link a [seguir](https://laravel.com/docs/9.x/configuration).
 
-NOTE: The default credentials for database are:
+Para testes locais use a seguinte configuração no .env:
+```bash
+APP_URL=http://localhost:8080
+```
+
+IMPORTANTE: As configurações de acesso padrões do banco de dados são:
 - host: mysql
 - database: default
 - user: root
 - password: admin
 
-### Access your application:
+#### Instalando dependencias
 
-```json
-localhost:8080
+Execute os comandos abaixo para instalar todas as dependencias do projeto:
+
+Na imagem PHP do Docker execute o comando abaixo:
+
+```bash
+composer install 
+```
+
+Fora do docker execute o comando abaixo:
+
+```bash
+npm install 
+```
+
+#### Gerar chave laravel
+Faça uma cópia do arquivo .env.example renomeando-o para .env, em seguida, acesse sua imagem PHP do docker e execute o comando abaixo:
+
+```bash
+php artisan key:generate 
+```
+
+#### Executando as migrations
+Na imagem PHP do Docker e execute as migrations para configurar seu banco de dados:
+
+```bash
+php artisan migrate
+```
+
+#### Executando as seeds
+Execute as seeds para criar os dados básicos:
+
+```bash
+php artisan db:seed
+```
+
+#### Executando testes
+No seu serviço PHP e execute o comando abaixo para executar os testes do Laravel:
+
+```bash
+php artisan test
+```
+
+#### Rodando o sistema (testes locais)
+Execute o comando abaixo direto no terminal do seu sistema, dentro da pasta do projeto
+
+```bash
+npm run dev
 ```
