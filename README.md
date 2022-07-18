@@ -1,4 +1,4 @@
-# API GRUPO PLAN - BELCHIOR
+# GRUPO PLAN - BELCHIOR
 Software Grupo Plan - Por Carlos Belchior.
 
 ## Tecnologias
@@ -7,6 +7,7 @@ As tecnologias abaixo descritas foram utilizadas para desenvolver esse projeto.
 - *Laravel 9.x*
 - *Vue.js 3.x*  
 - *Vuex 4.x*  
+- *Vue router 4.x*  
 - *MySQL*
 
 ## Configuração do projeto
