@@ -93,3 +93,45 @@ Execute o comando abaixo direto no terminal do seu sistema, dentro da pasta do p
 ```bash
 npm run dev
 ```
+
+## Rotas da API
+
+Para buscar os produtos:
+```json
+Method: GET
+URL: /api/produtos/todos
+```
+
+Para inserir um produto:
+```json
+Method: POST
+URL: /api/produtos/atualizar/ID_DO_PRODUTO
+```
+Data body:
+- 'nome' => 'required|min:3'
+- 'id_marca' => 'required|exists:marcas,id'
+- 'tensao' => 'required|numeric|between:1,2'
+- 'descricao' => 'required|min:3'
+
+Para encontrar um produto:
+```json
+Method: GET
+URL: /api/produtos/encontrar/ID_PRODUTO
+```
+
+Para atualizar um produto:
+```json
+Method: POST
+URL: /api/produtos/atualizar/ID_DO_PRODUTO
+```
+Data body:
+- 'nome' => 'required|min:3'
+- 'id_marca' => 'required|exists:marcas,id'
+- 'tensao' => 'required|numeric|between:1,2'
+- 'descricao' => 'required|min:3'
+
+Para excluir um produto:
+```json
+Method: GET
+URL: /api/produtos/exclusao/ID_PRODUTO
+```
